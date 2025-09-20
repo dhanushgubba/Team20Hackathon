@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -6,15 +6,15 @@ import {
   CreditCard,
   User,
   DollarSign,
-  Calendar,
   Smartphone,
-  MapPin,
   Building,
   Shield,
   AlertTriangle,
   Save,
   RotateCcw,
   Loader2,
+  Navigation,
+  Clock,
 } from 'lucide-react';
 import './TransactionForm.css';
 
@@ -26,13 +26,13 @@ const schema = yup.object({
     .positive('Amount must be positive')
     .required('Transaction amount is required'),
   transactionType: yup.string().required('Transaction type is required'),
-  timestamp: yup.string().required('Timestamp is required'),
+  timestamp: yup.string(), // Auto-populated, so not required from user
   accountBalance: yup
     .number()
     .min(0, 'Account balance cannot be negative')
     .required('Account balance is required'),
   deviceType: yup.string().required('Device type is required'),
-  location: yup.string().required('Location is required'),
+  location: yup.string(), // Auto-populated via GPS, so not required from user
   merchantCategory: yup.string().required('Merchant category is required'),
   ipAddressFlag: yup.string().required('IP Address flag is required'),
   previousFraudulentActivity: yup
@@ -93,18 +93,178 @@ const fraudulentActivityOptions = [
 const TransactionForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [locationError, setLocationError] = useState('');
+  const [isGettingLocation, setIsGettingLocation] = useState(false);
+
+  // Helper function to get local datetime string
+  const getLocalDateTime = useCallback(() => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  }, []);
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      timestamp: new Date().toISOString().slice(0, 16),
+      timestamp: getLocalDateTime(),
+      location: 'Detecting location...',
     },
   });
+
+  // Auto-update timestamp every 30 seconds for better performance
+  useEffect(() => {
+    const updateTimestamp = () => {
+      setValue('timestamp', getLocalDateTime());
+    };
+
+    // Initial timestamp
+    updateTimestamp();
+
+    // Update timestamp every 30 seconds instead of every second
+    const intervalId = setInterval(updateTimestamp, 30000);
+
+    return () => clearInterval(intervalId);
+  }, [setValue, getLocalDateTime]);
+
+  // Get GPS location on component mount
+  useEffect(() => {
+    const getLocation = async () => {
+      setIsGettingLocation(true);
+      setLocationError('');
+
+      if (!navigator.geolocation) {
+        setLocationError('Geolocation is not supported by this browser');
+        setValue('location', 'Unknown Location');
+        setIsGettingLocation(false);
+        return;
+      }
+
+      // Set immediate fallback to reduce perceived loading time
+      const fallbackTimer = setTimeout(() => {
+        setValue('location', 'Current Location');
+        setIsGettingLocation(false);
+      }, 3000); // 3 second fallback
+
+      const options = {
+        enableHighAccuracy: false, // Use less accurate but faster GPS
+        timeout: 5000, // Reduce timeout to 5 seconds
+        maximumAge: 300000, // Accept cached location up to 5 minutes old
+      };
+
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          clearTimeout(fallbackTimer); // Clear fallback timer if GPS succeeds
+          const { latitude, longitude } = position.coords;
+
+          try {
+            // Try to get readable address using reverse geocoding
+            const response = await fetch(
+              `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+            );
+
+            if (response.ok) {
+              const data = await response.json();
+              // Only use city name for cleaner display
+              const cityName =
+                data.city ||
+                data.locality ||
+                data.principalSubdivision ||
+                'Unknown City';
+              setValue('location', cityName);
+            } else {
+              throw new Error('Geocoding failed');
+            }
+          } catch (error) {
+            // Fallback to just "Current Location" for simplicity
+            setValue('location', 'Current Location');
+          }
+
+          setIsGettingLocation(false);
+        },
+        (error) => {
+          clearTimeout(fallbackTimer); // Clear fallback timer on error
+          let errorMessage = '';
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage = 'Location access denied by user';
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage = 'Location information unavailable';
+              break;
+            case error.TIMEOUT:
+              errorMessage = 'Location request timed out';
+              break;
+            default:
+              errorMessage = 'An unknown error occurred';
+              break;
+          }
+
+          setLocationError(errorMessage);
+          setValue('location', 'Location unavailable');
+          setIsGettingLocation(false);
+        },
+        options
+      );
+    };
+
+    getLocation();
+  }, [setValue]);
+
+  const refreshLocation = () => {
+    setIsGettingLocation(true);
+    setLocationError('');
+
+    const options = {
+      enableHighAccuracy: false, // Use less accurate but faster GPS
+      timeout: 5000, // Reduce timeout to 5 seconds
+      maximumAge: 300000, // Accept cached location up to 5 minutes old
+    };
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        try {
+          const response = await fetch(
+            `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+          );
+
+          if (response.ok) {
+            const data = await response.json();
+            // Only use city name for cleaner display
+            const cityName =
+              data.city ||
+              data.locality ||
+              data.principalSubdivision ||
+              'Unknown City';
+            setValue('location', cityName);
+          } else {
+            throw new Error('Geocoding failed');
+          }
+        } catch (error) {
+          // Fallback to just "Current Location" for simplicity
+          setValue('location', 'Current Location');
+        }
+
+        setIsGettingLocation(false);
+      },
+      (error) => {
+        setLocationError('Failed to get location');
+        setIsGettingLocation(false);
+      },
+      options
+    );
+  };
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -245,16 +405,22 @@ const TransactionForm = () => {
             <div className="form-row">
               <div className="form-group">
                 <label className="form-label">
-                  <Calendar className="label-icon" />
-                  Timestamp
+                  <Clock className="label-icon" />
+                  Timestamp (Auto-updated)
                 </label>
-                <input
-                  {...register('timestamp')}
-                  type="datetime-local"
-                  className={`form-input ${
-                    errors.timestamp ? 'form-input-error' : ''
-                  }`}
-                />
+                <div className="auto-field-container">
+                  <input
+                    {...register('timestamp')}
+                    type="datetime-local"
+                    className="form-input auto-field"
+                    readOnly
+                    title="Automatically updated every second"
+                  />
+                  <div className="auto-indicator">
+                    <Clock className="auto-icon spinning" />
+                    <span className="auto-text">Live</span>
+                  </div>
+                </div>
                 {errors.timestamp && (
                   <p className="error-message">{errors.timestamp.message}</p>
                 )}
@@ -309,17 +475,52 @@ const TransactionForm = () => {
 
               <div className="form-group">
                 <label className="form-label">
-                  <MapPin className="label-icon" />
-                  Location
+                  <Navigation className="label-icon" />
+                  Location (GPS Auto-detected)
                 </label>
-                <input
-                  {...register('location')}
-                  type="text"
-                  className={`form-input ${
-                    errors.location ? 'form-input-error' : ''
-                  }`}
-                  placeholder="Enter location"
-                />
+                <div className="auto-field-container">
+                  <input
+                    {...register('location')}
+                    type="text"
+                    className="form-input auto-field"
+                    readOnly
+                    title="Automatically detected using GPS"
+                  />
+                  <div className="auto-indicator">
+                    {isGettingLocation ? (
+                      <>
+                        <Loader2 className="auto-icon spinning" />
+                        <span className="auto-text">Getting GPS...</span>
+                      </>
+                    ) : locationError ? (
+                      <>
+                        <AlertTriangle className="auto-icon error" />
+                        <span className="auto-text error">Error</span>
+                      </>
+                    ) : (
+                      <>
+                        <Navigation className="auto-icon success" />
+                        <span className="auto-text success">GPS</span>
+                      </>
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    className="refresh-btn"
+                    onClick={refreshLocation}
+                    disabled={isGettingLocation}
+                    title="Refresh location"
+                  >
+                    <RotateCcw
+                      className={`refresh-icon ${
+                        isGettingLocation ? 'spinning' : ''
+                      }`}
+                    />
+                  </button>
+                </div>
+                {locationError && (
+                  <p className="error-message">{locationError}</p>
+                )}
                 {errors.location && (
                   <p className="error-message">{errors.location.message}</p>
                 )}

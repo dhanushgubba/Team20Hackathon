@@ -9,7 +9,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     // Clear any stored auth data here if needed
-    navigate('/login');
+    navigate('/');
   };
 
   return (

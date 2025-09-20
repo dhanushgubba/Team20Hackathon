@@ -73,10 +73,14 @@ const SignupForm = () => {
                 <input
                   {...register('firstName')}
                   type="text"
-                  className={`form-input ${errors.firstName ? 'form-input-error' : ''}`}
+                  className={`form-input ${
+                    errors.firstName ? 'form-input-error' : ''
+                  }`}
                   placeholder="First name"
                 />
-                {errors.firstName && <p className="error-message">{errors.firstName.message}</p>}
+                {errors.firstName && (
+                  <p className="error-message">{errors.firstName.message}</p>
+                )}
               </div>
 
               <div className="form-group">
@@ -84,10 +88,14 @@ const SignupForm = () => {
                 <input
                   {...register('lastName')}
                   type="text"
-                  className={`form-input ${errors.lastName ? 'form-input-error' : ''}`}
+                  className={`form-input ${
+                    errors.lastName ? 'form-input-error' : ''
+                  }`}
                   placeholder="Last name"
                 />
-                {errors.lastName && <p className="error-message">{errors.lastName.message}</p>}
+                {errors.lastName && (
+                  <p className="error-message">{errors.lastName.message}</p>
+                )}
               </div>
             </div>
 
@@ -97,10 +105,14 @@ const SignupForm = () => {
               <input
                 {...register('email')}
                 type="email"
-                className={`form-input ${errors.email ? 'form-input-error' : ''}`}
+                className={`form-input ${
+                  errors.email ? 'form-input-error' : ''
+                }`}
                 placeholder="Enter your email"
               />
-              {errors.email && <p className="error-message">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="error-message">{errors.email.message}</p>
+              )}
             </div>
 
             {/* Department Field */}
@@ -108,7 +120,9 @@ const SignupForm = () => {
               <label className="form-label">Department</label>
               <select
                 {...register('department')}
-                className={`form-select ${errors.department ? 'form-input-error' : ''}`}
+                className={`form-select ${
+                  errors.department ? 'form-input-error' : ''
+                }`}
               >
                 <option value="">Select your department</option>
                 {departments.map((dept) => (
@@ -117,7 +131,9 @@ const SignupForm = () => {
                   </option>
                 ))}
               </select>
-              {errors.department && <p className="error-message">{errors.department.message}</p>}
+              {errors.department && (
+                <p className="error-message">{errors.department.message}</p>
+              )}
             </div>
 
             {/* Password Field */}
@@ -127,7 +143,9 @@ const SignupForm = () => {
                 <input
                   {...register('password')}
                   type={showPassword ? 'text' : 'password'}
-                  className={`form-input ${errors.password ? 'form-input-error' : ''}`}
+                  className={`form-input ${
+                    errors.password ? 'form-input-error' : ''
+                  }`}
                   placeholder="Create a password"
                 />
                 <button
@@ -135,10 +153,16 @@ const SignupForm = () => {
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? <EyeOff className="icon-toggle" /> : <Eye className="icon-toggle" />}
+                  {showPassword ? (
+                    <EyeOff className="icon-toggle" />
+                  ) : (
+                    <Eye className="icon-toggle" />
+                  )}
                 </button>
               </div>
-              {errors.password && <p className="error-message">{errors.password.message}</p>}
+              {errors.password && (
+                <p className="error-message">{errors.password.message}</p>
+              )}
             </div>
 
             {/* Confirm Password Field */}
@@ -148,7 +172,9 @@ const SignupForm = () => {
                 <input
                   {...register('confirmPassword')}
                   type={showConfirmPassword ? 'text' : 'password'}
-                  className={`form-input ${errors.confirmPassword ? 'form-input-error' : ''}`}
+                  className={`form-input ${
+                    errors.confirmPassword ? 'form-input-error' : ''
+                  }`}
                   placeholder="Confirm your password"
                 />
                 <button
@@ -156,16 +182,26 @@ const SignupForm = () => {
                   className="password-toggle"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  {showConfirmPassword ? <EyeOff className="icon-toggle" /> : <Eye className="icon-toggle" />}
+                  {showConfirmPassword ? (
+                    <EyeOff className="icon-toggle" />
+                  ) : (
+                    <Eye className="icon-toggle" />
+                  )}
                 </button>
               </div>
               {errors.confirmPassword && (
-                <p className="error-message">{errors.confirmPassword.message}</p>
+                <p className="error-message">
+                  {errors.confirmPassword.message}
+                </p>
               )}
             </div>
 
             {/* Submit Button */}
-            <button type="submit" disabled={isLoading} className="submit-button">
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="submit-button"
+            >
               {isLoading ? 'Creating account...' : 'Create Account'}
             </button>
           </form>
@@ -174,7 +210,7 @@ const SignupForm = () => {
           <div className="form-footer">
             <p className="footer-text">
               Already have an account?{' '}
-              <Link to="/login" className="footer-link">
+              <Link to="/" className="footer-link">
                 Sign in here
               </Link>
             </p>
@@ -184,7 +220,8 @@ const SignupForm = () => {
         {/* Security Notice */}
         <div className="security-notice">
           <p className="security-text">
-            By creating an account, you agree to our Terms of Service and Privacy Policy.
+            By creating an account, you agree to our Terms of Service and
+            Privacy Policy.
           </p>
         </div>
       </div>
