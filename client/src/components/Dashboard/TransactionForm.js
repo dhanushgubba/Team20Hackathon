@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -96,6 +96,17 @@ const TransactionForm = () => {
   const [locationError, setLocationError] = useState('');
   const [isGettingLocation, setIsGettingLocation] = useState(false);
 
+  // Helper function to get local datetime string
+  const getLocalDateTime = useCallback(() => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day}T${hours}:${minutes}`;
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -105,7 +116,7 @@ const TransactionForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      timestamp: new Date().toISOString().slice(0, 16),
+      timestamp: getLocalDateTime(),
       location: 'Detecting location...',
     },
   });
@@ -113,8 +124,7 @@ const TransactionForm = () => {
   // Auto-update timestamp every 30 seconds for better performance
   useEffect(() => {
     const updateTimestamp = () => {
-      const now = new Date().toISOString().slice(0, 16);
-      setValue('timestamp', now);
+      setValue('timestamp', getLocalDateTime());
     };
 
     // Initial timestamp
@@ -124,7 +134,7 @@ const TransactionForm = () => {
     const intervalId = setInterval(updateTimestamp, 30000);
 
     return () => clearInterval(intervalId);
-  }, [setValue]);
+  }, [setValue, getLocalDateTime]);
 
   // Get GPS location on component mount
   useEffect(() => {
