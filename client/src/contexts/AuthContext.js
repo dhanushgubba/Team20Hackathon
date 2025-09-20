@@ -28,12 +28,26 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (data) => {
     setIsLoading(true);
-    await new Promise((res) => setTimeout(res, 1000));
-    console.log('Signed up:', data);
-    setIsLoading(false);
-
-    // Return success response
-    return { success: true };
+    try {
+      const response = await fetch('http://localhost:5000/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          username: `${data.firstName}${data.lastName}`.replace(/\s+/g, '').toLowerCase(),
+          full_name: `${data.firstName} ${data.lastName}`,
+          phone: '',
+          role: 'user',
+        }),
+      });
+      const result = await response.json();
+      setIsLoading(false);
+      return result;
+    } catch (error) {
+      setIsLoading(false);
+      return { success: false, message: 'Signup failed' };
+    }
   };
 
   return (

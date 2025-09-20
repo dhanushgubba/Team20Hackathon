@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react'; // Only eye icons
 import { useAuth } from '../../contexts/AuthContext';
 import './SignupForm.css';
@@ -46,9 +47,18 @@ const SignupForm = () => {
     resolver: yupResolver(schema),
   });
 
+  const navigate = useNavigate();
   const onSubmit = async (data) => {
     try {
-      await signup(data);
+      const response = await signup(data);
+      if (response.success) {
+        // Show success message
+        alert(response.message || 'Account created successfully!');
+        navigate('/'); // Redirect to login page
+      } else {
+        // Show error message
+        alert(response.message || 'Signup failed');
+      }
     } catch (error) {
       console.error('Signup failed:', error);
     }

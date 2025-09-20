@@ -15,12 +15,18 @@ export const TrafficGenerator = ({
   const [internalIsActive, setInternalIsActive] = useState(false);
   const [recentTransactions, setRecentTransactions] = useState([]);
   const [allTransactions, setAllTransactions] = useState([]);
-  const [faultCount, setFaultCount] = useState(0);
   const [totalProcessingTime, setTotalProcessingTime] = useState(0);
 
-  // Calculate derived statistics
-  const faultRate =
-    totalGenerated > 0 ? ((faultCount / totalGenerated) * 100).toFixed(2) : 0;
+  // Use fraudService to get stats
+  const stats = fraudService.getTransactionStats(allTransactions);
+  const faultRate = stats ? stats.flaggedRate : '0.0';
+  const approvedRate = stats ? stats.approvalRate : '0.0';
+  const blockedRate = stats ? stats.blockedRate : '0.0';
+
+  // Calculate Fraud Rate (%) = (Blocked + 0.5 * Flagged) / Total * 100
+  const fraudRate = stats && stats.total > 0
+    ? (((stats.blocked + 0.5 * stats.flagged) / stats.total) * 100).toFixed(1)
+    : '0.0';
   const avgProcessingTime =
     totalGenerated > 0 ? (totalProcessingTime / totalGenerated).toFixed(2) : 0;
 
@@ -60,13 +66,7 @@ export const TrafficGenerator = ({
         // Store all transactions
         setAllTransactions((prev) => [transaction, ...prev]);
 
-        // Track fault rate (flagged or declined transactions)
-        if (
-          transaction.status === 'flagged' ||
-          transaction.status === 'declined'
-        ) {
-          setFaultCount((prev) => prev + 1);
-        }
+        // Fault count logic removed; use fraudService.getTransactionStats instead
 
         // Track processing time
         setTotalProcessingTime((prev) => prev + processingTime);
@@ -141,7 +141,6 @@ export const TrafficGenerator = ({
     setCurrentTps(0);
     setRecentTransactions([]);
     setAllTransactions([]);
-    setFaultCount(0);
     setTotalProcessingTime(0);
   };
 
@@ -245,8 +244,20 @@ export const TrafficGenerator = ({
             <div className="summary-label">Generated Transactions</div>
           </div>
           <div className="summary-card">
+            <div className="summary-value">{approvedRate}%</div>
+            <div className="summary-label">Approved Percentage</div>
+          </div>
+          <div className="summary-card">
             <div className="summary-value">{faultRate}%</div>
-            <div className="summary-label">Fault Rate</div>
+            <div className="summary-label">Flagged Percentage</div>
+          </div>
+          <div className="summary-card">
+            <div className="summary-value">{blockedRate}%</div>
+            <div className="summary-label">Blocked Percentage</div>
+          </div>
+          <div className="summary-card">
+            <div className="summary-value">{fraudRate}%</div>
+            <div className="summary-label">Fraud Rate (%)</div>
           </div>
           <div className="summary-card">
             <div className="summary-value">{avgProcessingTime}ms</div>

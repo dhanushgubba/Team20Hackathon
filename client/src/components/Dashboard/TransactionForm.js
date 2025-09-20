@@ -34,7 +34,7 @@ const schema = yup.object({
   deviceType: yup.string().required('Device type is required'),
   location: yup.string(), // Auto-populated via GPS, so not required from user
   merchantCategory: yup.string().required('Merchant category is required'),
-  ipAddressFlag: yup.string().required('IP Address flag is required'),
+  // Removed ipAddressFlag validation
   previousFraudulentActivity: yup
     .string()
     .required('Previous fraudulent activity status is required'),
@@ -74,13 +74,7 @@ const merchantCategories = [
   'Other',
 ];
 
-const ipAddressFlags = [
-  'Safe',
-  'Suspicious',
-  'High Risk',
-  'Blacklisted',
-  'Unknown',
-];
+// Removed ipAddressFlags options
 
 const fraudulentActivityOptions = [
   'None',
@@ -553,32 +547,9 @@ const TransactionForm = () => {
               )}
             </div>
 
-            {/* IP Address Flag and Previous Fraudulent Activity */}
+            {/* Previous Fraudulent Activity Only */}
             <div className="form-row">
-              <div className="form-group">
-                <label className="form-label">
-                  <Shield className="label-icon" />
-                  IP Address Flag
-                </label>
-                <select
-                  {...register('ipAddressFlag')}
-                  className={`form-select ${
-                    errors.ipAddressFlag ? 'form-input-error' : ''
-                  }`}
-                >
-                  <option value="">Select IP address flag</option>
-                  {ipAddressFlags.map((flag) => (
-                    <option key={flag} value={flag}>
-                      {flag}
-                    </option>
-                  ))}
-                </select>
-                {errors.ipAddressFlag && (
-                  <p className="error-message">
-                    {errors.ipAddressFlag.message}
-                  </p>
-                )}
-              </div>
+              {/* IP Address Flag removed, only Previous Fraudulent Activity remains */}
 
               <div className="form-group">
                 <label className="form-label">

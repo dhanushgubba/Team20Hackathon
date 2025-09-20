@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BarChart3, Shield, Users } from 'lucide-react';
+import { LogOut, BarChart3, Shield, Users, Activity } from 'lucide-react';
 import TransactionForm from './TransactionForm';
 import './Dashboard.css';
 

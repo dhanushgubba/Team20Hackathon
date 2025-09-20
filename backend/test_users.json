@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "0a9aa663-7049-48be-b4f4-99d603da15f2",
+      "email": "newuser@example.com",
+      "username": "newuser",
+      "full_name": "New User",
+      "phone": "1234567890",
+      "password_hash": "cda18bb78762d0a3f3abe466aec8203eeb72105a9f97766cdf0eb9dd79eec0e8:cce562d91687485a2e38f56e0294ef865fb3989afc4b0aeacdefe94165bd7258",
+      "role": "user",
+      "created_at": "2025-09-20T20:05:29.934837",
+      "last_login": "2025-09-20T20:05:29.954958",
+      "is_active": true
+    }
+  ]
+}

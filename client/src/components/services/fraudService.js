@@ -3,34 +3,114 @@ export class FraudService {
   constructor() {
     this.transactionId = 1;
     this.merchants = [
-      'Amazon',
-      'Walmart',
-      'Target',
-      'Best Buy',
-      'Home Depot',
-      'Starbucks',
-      "McDonald's",
-      'Shell',
-      'Exxon',
-      'CVS',
-      'Walgreens',
-      'Costco',
-      'Apple Store',
-      'Netflix',
-      'Spotify',
+      'Amazon India', 'Flipkart', 'Reliance', 'Big Bazaar', 'Tata Cliq',
+      'Paytm', 'Zomato', 'Swiggy', 'Ola', 'Uber', 'IRCTC', 'BookMyShow',
+      'Airtel', 'Jio', 'Vodafone', 'HDFC Bank', 'ICICI Bank', 'Axis Bank',
+      'SBI', 'Croma', 'Myntra', 'Snapdeal', 'RedBus', 'MakeMyTrip', 'Indigo',
+      'SpiceJet', 'GoAir', 'Vistara', 'Tanishq', 'Titan', 'Dominos', 'Pizza Hut'
     ];
 
     this.locations = [
-      { city: 'New York', state: 'NY', country: 'USA' },
-      { city: 'Los Angeles', state: 'CA', country: 'USA' },
-      { city: 'Chicago', state: 'IL', country: 'USA' },
-      { city: 'Houston', state: 'TX', country: 'USA' },
-      { city: 'Phoenix', state: 'AZ', country: 'USA' },
-      { city: 'Philadelphia', state: 'PA', country: 'USA' },
-      { city: 'San Antonio', state: 'TX', country: 'USA' },
-      { city: 'San Diego', state: 'CA', country: 'USA' },
-      { city: 'Dallas', state: 'TX', country: 'USA' },
-      { city: 'San Jose', state: 'CA', country: 'USA' },
+      { city: 'Mumbai', state: 'MH', country: 'India' },
+      { city: 'Delhi', state: 'DL', country: 'India' },
+      { city: 'Bengaluru', state: 'KA', country: 'India' },
+      { city: 'Hyderabad', state: 'TG', country: 'India' },
+      { city: 'Ahmedabad', state: 'GJ', country: 'India' },
+      { city: 'Chennai', state: 'TN', country: 'India' },
+      { city: 'Kolkata', state: 'WB', country: 'India' },
+      { city: 'Pune', state: 'MH', country: 'India' },
+      { city: 'Jaipur', state: 'RJ', country: 'India' },
+      { city: 'Lucknow', state: 'UP', country: 'India' },
+      { city: 'Kanpur', state: 'UP', country: 'India' },
+      { city: 'Nagpur', state: 'MH', country: 'India' },
+      { city: 'Indore', state: 'MP', country: 'India' },
+      { city: 'Thane', state: 'MH', country: 'India' },
+      { city: 'Bhopal', state: 'MP', country: 'India' },
+      { city: 'Visakhapatnam', state: 'AP', country: 'India' },
+      { city: 'Patna', state: 'BR', country: 'India' },
+      { city: 'Vadodara', state: 'GJ', country: 'India' },
+      { city: 'Ghaziabad', state: 'UP', country: 'India' },
+      { city: 'Ludhiana', state: 'PB', country: 'India' },
+      { city: 'Agra', state: 'UP', country: 'India' },
+      { city: 'Nashik', state: 'MH', country: 'India' },
+      { city: 'Faridabad', state: 'HR', country: 'India' },
+      { city: 'Meerut', state: 'UP', country: 'India' },
+      { city: 'Rajkot', state: 'GJ', country: 'India' },
+      { city: 'Kalyan-Dombivali', state: 'MH', country: 'India' },
+      { city: 'Vasai-Virar', state: 'MH', country: 'India' },
+      { city: 'Varanasi', state: 'UP', country: 'India' },
+      { city: 'Srinagar', state: 'JK', country: 'India' },
+      { city: 'Aurangabad', state: 'MH', country: 'India' },
+      { city: 'Dhanbad', state: 'JH', country: 'India' },
+      { city: 'Amritsar', state: 'PB', country: 'India' },
+      { city: 'Navi Mumbai', state: 'MH', country: 'India' },
+      { city: 'Allahabad', state: 'UP', country: 'India' },
+      { city: 'Ranchi', state: 'JH', country: 'India' },
+      { city: 'Howrah', state: 'WB', country: 'India' },
+      { city: 'Coimbatore', state: 'TN', country: 'India' },
+      { city: 'Jabalpur', state: 'MP', country: 'India' },
+      { city: 'Gwalior', state: 'MP', country: 'India' },
+      { city: 'Vijayawada', state: 'AP', country: 'India' },
+      { city: 'Jodhpur', state: 'RJ', country: 'India' },
+      { city: 'Madurai', state: 'TN', country: 'India' },
+      { city: 'Raipur', state: 'CG', country: 'India' },
+      { city: 'Kota', state: 'RJ', country: 'India' },
+      { city: 'Guwahati', state: 'AS', country: 'India' },
+      { city: 'Chandigarh', state: 'CH', country: 'India' },
+      { city: 'Solapur', state: 'MH', country: 'India' },
+      { city: 'Hubli-Dharwad', state: 'KA', country: 'India' },
+      { city: 'Bareilly', state: 'UP', country: 'India' },
+      { city: 'Moradabad', state: 'UP', country: 'India' },
+      { city: 'Mysore', state: 'KA', country: 'India' },
+      { city: 'Gurgaon', state: 'HR', country: 'India' },
+      { city: 'Aligarh', state: 'UP', country: 'India' },
+      { city: 'Jalandhar', state: 'PB', country: 'India' },
+      { city: 'Tiruchirappalli', state: 'TN', country: 'India' },
+      { city: 'Bhubaneswar', state: 'OD', country: 'India' },
+      { city: 'Salem', state: 'TN', country: 'India' },
+      { city: 'Warangal', state: 'TG', country: 'India' },
+      { city: 'Mira-Bhayandar', state: 'MH', country: 'India' },
+      { city: 'Thiruvananthapuram', state: 'KL', country: 'India' },
+      { city: 'Bhiwandi', state: 'MH', country: 'India' },
+      { city: 'Saharanpur', state: 'UP', country: 'India' },
+      { city: 'Guntur', state: 'AP', country: 'India' },
+      { city: 'Amravati', state: 'MH', country: 'India' },
+      { city: 'Noida', state: 'UP', country: 'India' },
+      { city: 'Jamshedpur', state: 'JH', country: 'India' },
+      { city: 'Bhilai', state: 'CG', country: 'India' },
+      { city: 'Cuttack', state: 'OD', country: 'India' },
+      { city: 'Firozabad', state: 'UP', country: 'India' },
+      { city: 'Kochi', state: 'KL', country: 'India' },
+      { city: 'Bhavnagar', state: 'GJ', country: 'India' },
+      { city: 'Dehradun', state: 'UK', country: 'India' },
+      { city: 'Durgapur', state: 'WB', country: 'India' },
+      { city: 'Asansol', state: 'WB', country: 'India' },
+      { city: 'Nanded', state: 'MH', country: 'India' },
+      { city: 'Kolhapur', state: 'MH', country: 'India' },
+      { city: 'Ajmer', state: 'RJ', country: 'India' },
+      { city: 'Gulbarga', state: 'KA', country: 'India' },
+      { city: 'Jamnagar', state: 'GJ', country: 'India' },
+      { city: 'Ujjain', state: 'MP', country: 'India' },
+      { city: 'Loni', state: 'UP', country: 'India' },
+      { city: 'Siliguri', state: 'WB', country: 'India' },
+      { city: 'Jhansi', state: 'UP', country: 'India' },
+      { city: 'Ulhasnagar', state: 'MH', country: 'India' },
+      { city: 'Nellore', state: 'AP', country: 'India' },
+      { city: 'Jammu', state: 'JK', country: 'India' },
+      { city: 'Belgaum', state: 'KA', country: 'India' },
+      { city: 'Mangalore', state: 'KA', country: 'India' },
+      { city: 'Ambattur', state: 'TN', country: 'India' },
+      { city: 'Tirunelveli', state: 'TN', country: 'India' },
+      { city: 'Malegaon', state: 'MH', country: 'India' },
+      { city: 'Gaya', state: 'BR', country: 'India' },
+      { city: 'Udaipur', state: 'RJ', country: 'India' },
+      { city: 'Maheshtala', state: 'WB', country: 'India' },
+      { city: 'Davanagere', state: 'KA', country: 'India' },
+      { city: 'Kozhikode', state: 'KL', country: 'India' },
+      { city: 'Kurnool', state: 'AP', country: 'India' },
+      { city: 'Rajpur Sonarpur', state: 'WB', country: 'India' },
+      { city: 'Bokaro', state: 'JH', country: 'India' },
+      { city: 'South Dumdum', state: 'WB', country: 'India' }
     ];
 
     this.cardTypes = ['Visa', 'Mastercard', 'American Express', 'Discover'];
@@ -73,9 +153,6 @@ export class FraudService {
     const hour = new Date(transaction.timestamp).getHours();
     if (hour >= 23 || hour <= 5) riskScore += 20;
 
-    // Location-based risk (random high-risk locations)
-    if (Math.random() < 0.1) riskScore += 25; // 10% chance of high-risk location
-
     // Card type risk
     if (transaction.cardType === 'American Express') riskScore += 5;
 
@@ -87,8 +164,10 @@ export class FraudService {
       riskScore += 15;
     }
 
-    // Random anomaly detection
-    if (Math.random() < 0.05) riskScore += 40; // 5% chance of anomaly
+    // Deterministic fraud rate: based on transactionId
+    // Every 10th transaction is flagged, every 25th is blocked
+    if (this.transactionId % 25 === 0) riskScore += 70;
+    else if (this.transactionId % 10 === 0) riskScore += 45;
 
     return Math.min(riskScore, 100);
   }
