@@ -32,12 +32,13 @@ const LoginForm = () => {
     try {
       const result = await login(data);
 
-      if (result && result.user) {
+      {
+        /*if (result && result.user) {
         const userRole = result.user.role?.toLowerCase();
 
         switch (userRole) {
           case 'admin':
-            navigate('/admin/dashboard');
+            navigate('/dashboard');
             break;
           case 'analyst':
             navigate('/analyst/dashboard');
@@ -47,9 +48,9 @@ const LoginForm = () => {
             navigate('/dashboard');
             break;
         }
-      } else {
-        navigate('/dashboard');
+      } else {*/
       }
+      navigate('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
     }
