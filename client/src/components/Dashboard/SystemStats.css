@@ -1,0 +1,153 @@
+/* System Stats Component Styles */
+.system-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .system-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .system-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0 0 4px 0;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.stat-value.primary {
+  color: #111827;
+}
+
+.stat-value.danger {
+  color: #dc2626;
+}
+
+.stat-value.info {
+  color: #2563eb;
+}
+
+.stat-value.success {
+  color: #16a34a;
+}
+
+.stat-value.warning {
+  color: #d97706;
+}
+
+.stat-icon-wrapper {
+  padding: 12px;
+  border-radius: 50%;
+}
+
+.stat-icon-wrapper.primary {
+  background-color: #eff6ff;
+}
+
+.stat-icon-wrapper.danger {
+  background-color: #fee2e2;
+}
+
+.stat-icon-wrapper.info {
+  background-color: #eff6ff;
+}
+
+.stat-icon-wrapper.success {
+  background-color: #dcfce7;
+}
+
+.stat-icon-wrapper.warning {
+  background-color: #fef3c7;
+}
+
+.stat-icon-wrapper.inactive {
+  background-color: #f3f4f6;
+}
+
+.stat-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.stat-icon.primary {
+  color: #2563eb;
+}
+
+.stat-icon.danger {
+  color: #dc2626;
+}
+
+.stat-icon.info {
+  color: #2563eb;
+}
+
+.stat-icon.success {
+  color: #16a34a;
+}
+
+.stat-icon.warning {
+  color: #d97706;
+}
+
+.stat-icon.inactive {
+  color: #6b7280;
+}
+
+.stat-footer {
+  margin-top: 8px;
+}
+
+.stat-description {
+  font-size: 14px;
+  margin: 0;
+}
+
+.stat-description.success {
+  color: #16a34a;
+}
+
+.stat-description.warning {
+  color: #d97706;
+}
+
+.stat-description.danger {
+  color: #dc2626;
+}
+
+.stat-description.info {
+  color: #2563eb;
+}
