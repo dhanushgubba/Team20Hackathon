@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, BarChart3, Shield, Users } from 'lucide-react';
+import { LogOut, BarChart3, Shield, Users, Activity } from 'lucide-react';
 import TransactionForm from './TransactionForm';
 import './Dashboard.css';
 
@@ -27,9 +27,13 @@ const Dashboard = () => {
               <BarChart3 className="nav-icon" />
               <span>Transaction Analysis</span>
             </div>
-            <div className="nav-item">
-              <Users className="nav-icon" />
-              <span>User Management</span>
+            <div
+              className="nav-item"
+              onClick={() => navigate('/traffic-generator')}
+              style={{ cursor: 'pointer' }}
+            >
+              <Activity className="nav-icon" />
+              <span>Traffic Management</span>
             </div>
           </div>
 

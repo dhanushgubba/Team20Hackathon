@@ -1,0 +1,160 @@
+{
+  "users": [
+    {
+      "id": "e04f5ab3-986b-4876-8c40-34818eecf7fa",
+      "email": "admin@fraudguard.com",
+      "username": "admin",
+      "full_name": "Admin User",
+      "phone": "1234567890",
+      "password_hash": "cbea839cf8e830f5cc336037d3248a3a52ca8a1bebc49c761861a0bc1b1812e7:7377291bda3cfade5a0e44a52d7891ed5cfc124b52bed7a1f822a568168d33c3",
+      "role": "admin",
+      "created_at": "2025-09-20T20:05:41.766442",
+      "last_login": "2025-09-20T20:12:42.595899",
+      "is_active": true
+    },
+    {
+      "id": "4e11cc3a-9801-4597-a860-dcec1609091c",
+      "email": "analyst@fraudguard.com",
+      "username": "analyst",
+      "full_name": "Analyst User",
+      "phone": "1234567891",
+      "password_hash": "db9091828dbad085104acc1216197e8e1ccca8f1b5146eec8932b3ef1527b0f5:a1ab660c9c162337c7f897d203efa2b9d8fa8f9d2dc0bae04258798dc7bd1eab",
+      "role": "analyst",
+      "created_at": "2025-09-20T20:05:41.767780",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "0be826dc-af52-4b88-8b9e-b8ecb367897d",
+      "email": "demo@fraudguard.com",
+      "username": "demo",
+      "full_name": "Demo User",
+      "phone": "1234567892",
+      "password_hash": "bdd584926b3d5c33401b70e25bda4003c1b02f5193b141e1405be0aa1aa8f6a0:2b8f7c56a9f69156bf6cf63f760f395cfbb52fc92670f1753cb4b7613d08ab30",
+      "role": "user",
+      "created_at": "2025-09-20T20:05:41.768990",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "520810ae-51db-4add-bb72-c054fd89fd71",
+      "email": "testuser@example.com",
+      "username": "testuser",
+      "full_name": "Test User",
+      "phone": "1234567890",
+      "password_hash": "a8a5eafc6cf6089013d1ad6b25f23a561b91e826e1a2bcf402c8e27a9dd17170:1d318e5ab0c47f6a80dd16ed222fdf8d592b9b82048fd422abce27e6eb1b2c66",
+      "role": "user",
+      "created_at": "2025-09-20T20:12:40.559430",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "8189b27f-0cc5-4841-bcba-c93d5a37e3e9",
+      "email": "2205a41212@sru.edu.in",
+      "username": "pavanstark",
+      "full_name": "pavan stark",
+      "phone": "",
+      "password_hash": "106d0d6ba669495acf5795a29ebbcd0b12e665db833ae597d6cc2b0b7bf5c200:dd6318ad6a478a0610a79f474ae9b2570714c25129c77278d96d4ab4da561219",
+      "role": "user",
+      "created_at": "2025-09-20T20:13:14.485981",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "828b947c-2611-40c4-b17b-e9c8e326f3e1",
+      "email": "example12@sru.edu.in",
+      "username": "mybadstark",
+      "full_name": "mybad stark",
+      "phone": "",
+      "password_hash": "7b205556c7181ec5de589625f2e2891b5e21ed9dde6b98b32d3b02ec32a0e8c5:ead919f80e92fc4218684aa720ec24ebfbe543149a440c005369b9d799e1443a",
+      "role": "user",
+      "created_at": "2025-09-20T20:36:24.588681",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "b5fd3e3d-2500-4650-98b1-e0573c3f7023",
+      "email": "kl@gmail.com",
+      "username": "fadlskjljvasdljf",
+      "full_name": "fadlskjl jvasdljf",
+      "phone": "",
+      "password_hash": "67f994cbb66188f0f4d2aadf76e7a5195e256f8c67ff519ef568ad62f73e0523:35b1c30e96e6e36519f564c4b867c50fdf9bf5a922d172522f4d660780e5dab4",
+      "role": "user",
+      "created_at": "2025-09-20T22:12:45.713056",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "ccca248f-8d27-406c-b08e-6cee3f3c47d3",
+      "email": "ll@gmail.com",
+      "username": "fdafjadslf",
+      "full_name": "fda fjadslf",
+      "phone": "",
+      "password_hash": "84e1c0c0aaa2651f45deb3725251dfe5ec721eb6fbeb2f2aa736809f4db40132:ea5a539b4f9ffe311e2b6aceb979ae649a1ea86d8ec88dea1e54f8c80ef8e2f8",
+      "role": "user",
+      "created_at": "2025-09-20T22:13:31.761754",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "e4bd0c9e-1e1d-48b3-9fd2-8d47b867ba5d",
+      "email": "ioju@gmail.com",
+      "username": "kjpioljn",
+      "full_name": "kjpio ljn",
+      "phone": "",
+      "password_hash": "6476de348f83b0bfab0de516faa25db9126e116d30e5273217253fa275920f1b:3debeb8cd5d97e5a38a9d1bc546a1c73ca603028a671c7852fdb354e88a7cc1b",
+      "role": "user",
+      "created_at": "2025-09-20T22:15:26.056976",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "1842188f-9c4c-4b21-8a9d-c6aad01f3d66",
+      "email": "klu@gmail.com",
+      "username": "fadklsjfadssklfjadsk",
+      "full_name": "fadklsj fadssklfjadsk",
+      "phone": "",
+      "password_hash": "2f4fbf445b3526cfe213ff8e2d0ed5b8af5cf28bc25361a1bc97872b62e74896:2a489468c445313ebcf766ad8f552fcb0a400eb647d74bcf24df276bf7570e62",
+      "role": "user",
+      "created_at": "2025-09-20T22:17:50.042898",
+      "last_login": "2025-09-20T22:18:03.837755",
+      "is_active": true
+    },
+    {
+      "id": "f710d808-5e68-4409-8112-08b3b183fcd7",
+      "email": "32885@gmail.com",
+      "username": "kadiyamdeepika",
+      "full_name": "Kadiyam Deepika",
+      "phone": "",
+      "password_hash": "4e0b43bffb4db6c530dc1e9c99aa764d239deea590c9584ec452738301b47583:9505195459569a8a74033758f7c4c2af30779f257707b56a43847764cecf70ad",
+      "role": "user",
+      "created_at": "2025-09-21T00:06:36.855043",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "154b6171-7c42-40c0-8470-5e8dd71928d1",
+      "email": "2200032885@gmail.com",
+      "username": "kadiyamdeepikasaidevi",
+      "full_name": "KadiyamDeepika SaiDevi",
+      "phone": "",
+      "password_hash": "b43b1ed7c8fcfb643c9107cf790b1dddd292b24773a738094538ffaf7a75fda9:5a2e0942faaf24da644476e5419aefab0240c2aff7bf5da983485dd5812cae1b",
+      "role": "user",
+      "created_at": "2025-09-21T00:31:12.829903",
+      "last_login": null,
+      "is_active": true
+    },
+    {
+      "id": "a5d31cb4-65dc-46ac-80c2-8ebb04a82489",
+      "email": "123@gmail.com",
+      "username": "abcdef",
+      "full_name": "abc def",
+      "phone": "",
+      "password_hash": "f1bec2e65a24bd2a9b8f6988c42b4226fbd9309f31041acb16f6c7a054f4dc4e:77f02ef03818e403b20d84193b5be0f73576420719c2cb479db77d12e5f1d1ed",
+      "role": "user",
+      "created_at": "2025-09-21T00:55:16.884309",
+      "last_login": null,
+      "is_active": true
+    }
+  ]
+}
