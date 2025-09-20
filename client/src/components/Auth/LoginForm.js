@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, Shield, Mail, Lock, Loader2 } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import './LoginForm.css';
 
@@ -30,26 +30,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const result = await login(data);
-
-      {
-        /*if (result && result.user) {
-        const userRole = result.user.role?.toLowerCase();
-
-        switch (userRole) {
-          case 'admin':
-            navigate('/dashboard');
-            break;
-          case 'analyst':
-            navigate('/analyst/dashboard');
-            break;
-          case 'demo':
-          default:
-            navigate('/dashboard');
-            break;
-        }
-      } else {*/
-      }
+      await login(data);
       navigate('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
@@ -61,9 +42,6 @@ const LoginForm = () => {
       <div className="login-wrapper">
         {/* Header */}
         <div className="login-header">
-          <div className="login-icon">
-            <Shield className="shield-icon" />
-          </div>
           <h1 className="login-title">Welcome Back</h1>
           <p className="login-subtitle">Sign in to your FraudGuard account</p>
         </div>
@@ -90,19 +68,14 @@ const LoginForm = () => {
             {/* Email Field */}
             <div className="form-group">
               <label className="form-label">Email Address</label>
-              <div className="input-container">
-                <div className="input-icon">
-                  <Mail className="icon" />
-                </div>
-                <input
-                  {...register('email')}
-                  type="email"
-                  className={`form-input ${
-                    errors.email ? 'form-input-error' : ''
-                  }`}
-                  placeholder="Enter your email"
-                />
-              </div>
+              <input
+                {...register('email')}
+                type="email"
+                className={`form-input ${
+                  errors.email ? 'form-input-error' : ''
+                }`}
+                placeholder="Enter your email"
+              />
               {errors.email && (
                 <p className="error-message">{errors.email.message}</p>
               )}
@@ -112,9 +85,6 @@ const LoginForm = () => {
             <div className="form-group">
               <label className="form-label">Password</label>
               <div className="input-container">
-                <div className="input-icon">
-                  <Lock className="icon" />
-                </div>
                 <input
                   {...register('password')}
                   type={showPassword ? 'text' : 'password'}
@@ -146,14 +116,7 @@ const LoginForm = () => {
               disabled={isLoading}
               className="submit-button"
             >
-              {isLoading ? (
-                <>
-                  <Loader2 className="loading-spinner" />
-                  Signing in...
-                </>
-              ) : (
-                'Sign In'
-              )}
+              {isLoading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 

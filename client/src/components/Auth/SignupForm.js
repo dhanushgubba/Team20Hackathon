@@ -3,16 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
-import {
-  Eye,
-  EyeOff,
-  Shield,
-  Mail,
-  Lock,
-  User,
-  Building,
-  Loader2,
-} from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react'; // Only eye icons
 import { useAuth } from '../../contexts/AuthContext';
 import './SignupForm.css';
 
@@ -68,9 +59,6 @@ const SignupForm = () => {
       <div className="signup-wrapper">
         {/* Header */}
         <div className="signup-header">
-          <div className="signup-icon">
-            <Shield className="shield-icon" />
-          </div>
           <h1 className="signup-title">Join FraudGuard</h1>
           <p className="signup-subtitle">Create your account to get started</p>
         </div>
@@ -82,105 +70,64 @@ const SignupForm = () => {
             <div className="name-fields">
               <div className="form-group">
                 <label className="form-label">First Name</label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <User className="icon" />
-                  </div>
-                  <input
-                    {...register('firstName')}
-                    type="text"
-                    className={`form-input ${
-                      errors.firstName ? 'form-input-error' : ''
-                    }`}
-                    placeholder="First name"
-                  />
-                </div>
-                {errors.firstName && (
-                  <p className="error-message">{errors.firstName.message}</p>
-                )}
+                <input
+                  {...register('firstName')}
+                  type="text"
+                  className={`form-input ${errors.firstName ? 'form-input-error' : ''}`}
+                  placeholder="First name"
+                />
+                {errors.firstName && <p className="error-message">{errors.firstName.message}</p>}
               </div>
 
               <div className="form-group">
                 <label className="form-label">Last Name</label>
-                <div className="input-container">
-                  <div className="input-icon">
-                    <User className="icon" />
-                  </div>
-                  <input
-                    {...register('lastName')}
-                    type="text"
-                    className={`form-input ${
-                      errors.lastName ? 'form-input-error' : ''
-                    }`}
-                    placeholder="Last name"
-                  />
-                </div>
-                {errors.lastName && (
-                  <p className="error-message">{errors.lastName.message}</p>
-                )}
+                <input
+                  {...register('lastName')}
+                  type="text"
+                  className={`form-input ${errors.lastName ? 'form-input-error' : ''}`}
+                  placeholder="Last name"
+                />
+                {errors.lastName && <p className="error-message">{errors.lastName.message}</p>}
               </div>
             </div>
 
             {/* Email Field */}
             <div className="form-group">
               <label className="form-label">Email Address</label>
-              <div className="input-container">
-                <div className="input-icon">
-                  <Mail className="icon" />
-                </div>
-                <input
-                  {...register('email')}
-                  type="email"
-                  className={`form-input ${
-                    errors.email ? 'form-input-error' : ''
-                  }`}
-                  placeholder="Enter your email"
-                />
-              </div>
-              {errors.email && (
-                <p className="error-message">{errors.email.message}</p>
-              )}
+              <input
+                {...register('email')}
+                type="email"
+                className={`form-input ${errors.email ? 'form-input-error' : ''}`}
+                placeholder="Enter your email"
+              />
+              {errors.email && <p className="error-message">{errors.email.message}</p>}
             </div>
 
             {/* Department Field */}
             <div className="form-group">
               <label className="form-label">Department</label>
-              <div className="input-container">
-                <div className="input-icon">
-                  <Building className="icon" />
-                </div>
-                <select
-                  {...register('department')}
-                  className={`form-select ${
-                    errors.department ? 'form-input-error' : ''
-                  }`}
-                >
-                  <option value="">Select your department</option>
-                  {departments.map((dept) => (
-                    <option key={dept} value={dept}>
-                      {dept}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              {errors.department && (
-                <p className="error-message">{errors.department.message}</p>
-              )}
+              <select
+                {...register('department')}
+                className={`form-select ${errors.department ? 'form-input-error' : ''}`}
+              >
+                <option value="">Select your department</option>
+                {departments.map((dept) => (
+                  <option key={dept} value={dept}>
+                    {dept}
+                  </option>
+                ))}
+              </select>
+              {errors.department && <p className="error-message">{errors.department.message}</p>}
             </div>
 
             {/* Password Field */}
             <div className="form-group">
               <label className="form-label">Password</label>
               <div className="input-container">
-                <div className="input-icon">
-                  <Lock className="icon" />
-                </div>
                 <input
                   {...register('password')}
                   type={showPassword ? 'text' : 'password'}
-                  className={`form-input ${
-                    errors.password ? 'form-input-error' : ''
-                  }`}
+                  className={`form-input ${errors.password ? 'form-input-error' : ''}`}
                   placeholder="Create a password"
                 />
                 <button
@@ -188,31 +135,20 @@ const SignupForm = () => {
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  {showPassword ? (
-                    <EyeOff className="icon-toggle" />
-                  ) : (
-                    <Eye className="icon-toggle" />
-                  )}
+                  {showPassword ? <EyeOff className="icon-toggle" /> : <Eye className="icon-toggle" />}
                 </button>
               </div>
-              {errors.password && (
-                <p className="error-message">{errors.password.message}</p>
-              )}
+              {errors.password && <p className="error-message">{errors.password.message}</p>}
             </div>
 
             {/* Confirm Password Field */}
             <div className="form-group">
               <label className="form-label">Confirm Password</label>
               <div className="input-container">
-                <div className="input-icon">
-                  <Lock className="icon" />
-                </div>
                 <input
                   {...register('confirmPassword')}
                   type={showConfirmPassword ? 'text' : 'password'}
-                  className={`form-input ${
-                    errors.confirmPassword ? 'form-input-error' : ''
-                  }`}
+                  className={`form-input ${errors.confirmPassword ? 'form-input-error' : ''}`}
                   placeholder="Confirm your password"
                 />
                 <button
@@ -220,34 +156,17 @@ const SignupForm = () => {
                   className="password-toggle"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  {showConfirmPassword ? (
-                    <EyeOff className="icon-toggle" />
-                  ) : (
-                    <Eye className="icon-toggle" />
-                  )}
+                  {showConfirmPassword ? <EyeOff className="icon-toggle" /> : <Eye className="icon-toggle" />}
                 </button>
               </div>
               {errors.confirmPassword && (
-                <p className="error-message">
-                  {errors.confirmPassword.message}
-                </p>
+                <p className="error-message">{errors.confirmPassword.message}</p>
               )}
             </div>
 
             {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="submit-button"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="loading-spinner" />
-                  Creating account...
-                </>
-              ) : (
-                'Create Account'
-              )}
+            <button type="submit" disabled={isLoading} className="submit-button">
+              {isLoading ? 'Creating account...' : 'Create Account'}
             </button>
           </form>
 
@@ -265,8 +184,7 @@ const SignupForm = () => {
         {/* Security Notice */}
         <div className="security-notice">
           <p className="security-text">
-            By creating an account, you agree to our Terms of Service and
-            Privacy Policy.
+            By creating an account, you agree to our Terms of Service and Privacy Policy.
           </p>
         </div>
       </div>

@@ -85,13 +85,13 @@
   border-radius: 1rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   border: 1px solid #f3f4f6;
-  padding: 2rem;
+  padding: 4rem;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 /* Form Groups */
@@ -108,38 +108,17 @@
   margin-bottom: 0.5rem;
 }
 
-/* Input Containers */
-.input-container {
-  position: relative;
-}
-
-.input-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  padding-left: 0.75rem;
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-}
-
-.icon {
-  height: 1.25rem;
-  width: 1.25rem;
-  color: #9ca3af;
-}
-
 /* Form Inputs */
 .form-input {
   display: block;
-  width: 90%;
-  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
   border: 1px solid #d1d5db;
   border-radius: 0.5rem;
   font-size: 1rem;
   transition: all 0.2s ease;
   outline: none;
+  box-sizing: border-box;
 }
 
 .form-input:focus {
@@ -150,31 +129,6 @@
 .form-input-error {
   border-color: #fca5a5;
   background-color: #fef2f2;
-}
-
-/* Password Toggle */
-.password-toggle {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  padding-right: 0.75rem;
-  display: flex;
-  align-items: center;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.icon-toggle {
-  height: 1.25rem;
-  width: 1.25rem;
-  color: #9ca3af;
-  transition: color 0.2s ease;
-}
-
-.icon-toggle:hover {
-  color: #6b7280;
 }
 
 /* Submit Button */
